@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>简单鼠标拖拽</title>
+    <style type="text/css">
+        #dray {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            -moz-user-select: none;
+        }
+
+        #box {
+            width: 400px;
+            height: 400px;
+            margin-left: 500px;
+            margin-top: 200px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body onload="dvDray()">
+<div id="dray">拖我</div>
+<div id="box">拖到我这里来</div>
+<script type="text/javascript">
+    function dvDray() {
+        var dv = document.getElementById("dray");
+        var d = document, x, y;
+        dv.onselectstart = function () { return false; };
+        dv.onmousedown = function (e) {
+            e = e || window.event;
+            x = e.clientX - dv.offsetLeft;
+            y = e.clientY - dv.offsetTop;
+            d.onmousemove = function (e) {
+                e = e || window.event;
+                var el = e.clientX - x;
+                var et = e.clientY - y;
+                dv.style.left = el + "px";
+                dv.style.top = et + "px";
+                checkDvPosition(el, et);
+            };
+            d.onmouseup = function () { d.onmousemove = null; };
+        };
+    }
+
+    function checkDvPosition(ol, ot) {
+        var b = document.getElementById("box");
+        var l = b.offsetLeft;
+        var t = b.offsetTop;
+
+        if (ol > l && ot > t && ol < l + 100 && ot < t + 100) {
+            b.style.backgroundColor = "blue";
+        }
+        else {
+            b.style.backgroundColor = "green";
+        }
+    }
+</script>
+</body>
+</html>

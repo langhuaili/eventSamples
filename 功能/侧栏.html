@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height:100%;
+            padding:0;
+            margin:0;
+            background-color:blue;
+        }
+        .celan{
+            clear:both;
+            position:fixed;
+            z-index:1;
+            height:100%;
+             left:-100px;
+            transition:left 1s;
+        }
+        .celan .left{
+            float:left;
+            width:100px;
+            height:100%;
+            background:white;
+        }
+        .celan .right{
+            float:left;
+            width:40px;
+            background:white;
+            display:inline-block;
+            margin-top:100%;
+        }
+
+    </style>
+</head>
+<body>
+<div class="celan" id="celan">
+    <div class="left"></div>
+    <div class="right">分享</div>
+</div>
+</body>
+<script>
+    var celan=document.getElementById('celan');
+    celan.onmouseenter=function(){
+        this.style.left=0;
+    }
+    celan.onmouseleave=function(){
+        this.style.left=-100+'px';
+    }
+
+</script>
+</html>

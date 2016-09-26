@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+        height:100%;
+        padding:0;
+        margin:0;
+        background-color:blue;
+        }
+        #a{
+            height:100px;
+            width:100px;
+            background:yellow;
+            position:absolute;
+        }
+        #b{
+            width:400px;
+            height:400px;
+            background:orange;
+        }
+    </style>
+</head>
+<body>
+<div id="b">
+<div id="a">
+</div>
+</div>
+<script>
+    var div=document.getElementById('a');
+
+    div.onmousedown=function(){
+        div.style.cursor='move';
+        document.onmousemove=function(e){
+                e=window.event||e;
+                console.log(e);
+                div.style.left=e.clientX+'px';
+                div.style.top=e.clientY+'px';
+         }
+    }
+    div.onmouseup=function(){
+        this.style.cursor='auto';
+        document.onmousemove=null;
+    }
+
+</script>
+</body>
+</html>
